@@ -1,0 +1,76 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "title": "ferrari 458",
+            "thumbnail": "https://cdn.shopify.com/s/files/1/0006/0129/2859/products/73400-2_300x.jpg?v=1554423896",
+            "rating": 4
+        },
+        {
+            "id": 2,
+            "title": "volvo xc90",
+            "thumbnail": "https://images-na.ssl-images-amazon.com/images/I/41es%2Bh7pN2L._SL500_AA300_.jpg",
+            "rating": 3
+        },
+        {
+            "id": 3,
+            "title": "mercedes suv",
+            "thumbnail": "https://images-na.ssl-images-amazon.com/images/I/41koMsBCY8L._SL500_AA300_.jpg",
+            "rating": 5
+        },
+        {
+            "id": 4,
+            "title": "tesla model s",
+            "thumbnail": "https://images-na.ssl-images-amazon.com/images/I/41NMsYx-I%2BL._SL500_AA300_.jpg",
+            "rating": 5
+        },
+        {
+            "id": 1,
+            "title": "ferrari 458",
+            "thumbnail": "https://cdn.shopify.com/s/files/1/0006/0129/2859/products/73400-2_300x.jpg?v=1554423896",
+            "rating": 4
+        },
+        {
+            "id": 2,
+            "title": "volvo xc90",
+            "thumbnail": "https://images-na.ssl-images-amazon.com/images/I/41es%2Bh7pN2L._SL500_AA300_.jpg",
+            "rating": 3
+        },
+        {
+            "id": 3,
+            "title": "mercedes suv",
+            "thumbnail": "https://images-na.ssl-images-amazon.com/images/I/41koMsBCY8L._SL500_AA300_.jpg",
+            "rating": 5
+        },
+        {
+            "id": 4,
+            "title": "tesla model s",
+            "thumbnail": "https://images-na.ssl-images-amazon.com/images/I/41NMsYx-I%2BL._SL500_AA300_.jpg",
+            "rating": 5
+        },
+        {
+            "id": 1,
+            "title": "ferrari 458",
+            "thumbnail": "https://cdn.shopify.com/s/files/1/0006/0129/2859/products/73400-2_300x.jpg?v=1554423896",
+            "rating": 4
+        },
+        {
+            "id": 2,
+            "title": "volvo xc90",
+            "thumbnail": "https://images-na.ssl-images-amazon.com/images/I/41es%2Bh7pN2L._SL500_AA300_.jpg",
+            "rating": 3
+        },
+        {
+            "id": 3,
+            "title": "mercedes suv",
+            "thumbnail": "https://images-na.ssl-images-amazon.com/images/I/41koMsBCY8L._SL500_AA300_.jpg",
+            "rating": 5
+        },
+        {
+            "id": 4,
+            "title": "tesla model s",
+            "thumbnail": "https://images-na.ssl-images-amazon.com/images/I/41NMsYx-I%2BL._SL500_AA300_.jpg",
+            "rating": 5
+        }
+    ]
+}
