@@ -7,7 +7,10 @@ class List extends Component {
     state = { data: [] }
     componentWillMount() {
         axios.get('http://localhost:3000/data')
-            .then((response) => this.setState({ data: response.data }))
+            .then((response) => {
+                console.log(response.data)
+                this.setState({ data: response.data })
+            })
             .catch((error) => console.log(error))
     }
 
