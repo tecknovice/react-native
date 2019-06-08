@@ -4,6 +4,12 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 
 export default class App extends PureComponent {
+  state ={textBlocks: []}
+  textRecognized = object => {
+    const { textBlocks } = object;
+    this.setState({ textBlocks });
+    console.warn(object)
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -20,15 +26,7 @@ export default class App extends PureComponent {
             buttonPositive: 'Ok',
             buttonNegative: 'Cancel',
           }}
-          androidRecordAudioPermissionOptions={{
-            title: 'Permission to use audio recording',
-            message: 'We need your permission to use your audio',
-            buttonPositive: 'Ok',
-            buttonNegative: 'Cancel',
-          }}
-          onGoogleVisionBarcodesDetected={({ barcodes }) => {
-            console.log(barcodes);
-          }}
+          onTextRecognized={this.textRecognized}
         />
         <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
           <TouchableOpacity onPress={this.takePicture.bind(this)} style={styles.capture}>
@@ -43,7 +41,7 @@ export default class App extends PureComponent {
     if (this.camera) {
       const options = { quality: 0.5, base64: true };
       const data = await this.camera.takePictureAsync();
-      console.log(data);
+      console.warn(data);
     }
   };
 }
