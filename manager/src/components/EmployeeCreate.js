@@ -8,13 +8,12 @@ import { Card, CardSection, Button } from './common'
 class EmployeeCreate extends Component {
     onButtonPress() {
         const { name, phone, shift } = this.props
-        this.props.employeeCreate({ name, phone, shift })
+        this.props.employeeCreate({ name, phone, shift: shift || 'Monday' })
     }
     render() {
-        console.log(this.props)
         return (
             <Card>
-                <EmployeeForm {...this.props}/>
+                <EmployeeForm {...this.props} />
                 <CardSection>
                     <Button onPress={this.onButtonPress.bind(this)}>
                         Create</Button>
