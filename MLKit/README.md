@@ -542,4 +542,4 @@ const styles = StyleSheet.create({
 });
 ```
 # Result
-![alt text](./MLKit.png)
+![MLKit App](https://raw.githubusercontent.com/tecknovice/ReactNative/master/MLKit/MLkit.png)
