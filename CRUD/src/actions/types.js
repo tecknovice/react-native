@@ -1,0 +1,6 @@
+export const UPDATE_FORM = 'UPDATE_FORM'
+export const READ_NOTES = 'READ_NOTES'
+export const READ_NOTE = 'READ_NOTE'
+export const CREATE_NOTE = 'CREATE_NOTE'
+export const UPDATE_NOTE = 'UPDATE_NOTE'
+export const DELETE_NOTE ='DELETE_NOTE'

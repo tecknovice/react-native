@@ -1,19 +1,40 @@
 import React, { Component } from "react"
-import { View, Text } from 'react-native'
+import { View, Button } from 'react-native'
+import { connect } from 'react-redux'
 
-export default class Create extends Component {
+import { createNote } from '../actions'
+import Form from './commons/Form'
+import { Card } from './commons/Card'
+class Create extends Component {
+    static navigationOptions = {
+        title: 'Create'
+      }
+    onPressButton() {
+        const { title, body } = this.props
+        this.props.createNote({ title, body })
+    }
     render() {
+        const { containerStyle } = styles
         return (
-            <View style={styles.container}>
-                <Text>Create screen</Text>
+            <View style={containerStyle}>
+                <Form />
+                <Card>
+                    <Button
+                        onPress={this.onPressButton.bind(this)}
+                        title="Create"
+                    />
+                </Card>
             </View>
         )
     }
 }
 const styles = {
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+    containerStyle: {
+        flex:1
     }
 }
+const mapStateToProps = state => {
+    const { title, body } = state.form
+    return { title, body }
+}
+export default connect(mapStateToProps, { createNote })(Create)

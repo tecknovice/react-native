@@ -1,80 +1,26 @@
 import React, { Component } from "react";
-import { View, Button, FlatList } from 'react-native'
+import { View, FlatList } from 'react-native'
 import { Icon } from 'react-native-elements'
+import { connect } from 'react-redux'
 
+import {readNotes} from '../actions'
 import ListItem from './ListItem'
-
-export default class List extends Component {
-    static navigationOptions = ({ navigation }) => {
-        return {
-            headerTitle: 'List'
-           
-        }
-    }
-
-    constructor(props) {
+class List extends Component {
+    static navigationOptions = {
+        title: 'List'
+      }
+    constructor(props){
         super(props)
-        this.state = {
-            notes: [
-                {
-                    title: 'reading', body: 'world is flat, the sixth sense'
-                },
-                {
-                    title: 'studying', body: 'react native, HTML, CSS, javascript'
-                },
-                {
-                    title: 'studying', body: 'react native, HTML, CSS, javascript'
-                },
-                {
-                    title: 'studying', body: 'react native, HTML, CSS, javascript'
-                },
-                {
-                    title: 'studying', body: 'react native, HTML, CSS, javascript'
-                },
-                {
-                    title: 'studying', body: 'react native, HTML, CSS, javascript'
-                },
-                {
-                    title: 'studying', body: 'react native, HTML, CSS, javascript'
-                },
-                {
-                    title: 'studying', body: 'react native, HTML, CSS, javascript'
-                },
-                {
-                    title: 'studying', body: 'react native, HTML, CSS, javascript'
-                },
-                {
-                    title: 'studying', body: 'react native, HTML, CSS, javascript'
-                },
-                {
-                    title: 'studying', body: 'react native, HTML, CSS, javascript'
-                },
-                {
-                    title: 'studying', body: 'react native, HTML, CSS, javascript'
-                },
-                {
-                    title: 'studying', body: 'react native, HTML, CSS, javascript'
-                },
-                {
-                    title: 'studying', body: 'react native, HTML, CSS, javascript'
-                },
-                {
-                    title: 'studying', body: 'react native, HTML, CSS, javascript'
-                },
-                {
-                    title: 'ending', body: 'react native, HTML, CSS, javascript'
-                }
-            ]
-        }
-    }
-
+        this.props.readNotes()
+        this.state ={ isLoading: true}
+      }
     render() {
         const { navigate } = this.props.navigation
         const { buttonContainerStyle } = styles
         return (
             <View style={{ flex: 1, backgroundColor: '#EEE' }}>
                 <FlatList
-                    data={this.state.notes}
+                    data={this.props.notes}
                     renderItem={({ item }) => <ListItem {...item} />}
                 />
                 <View
@@ -110,3 +56,9 @@ const styles = {
         shadowOpacity: 0.2
     }
 }
+
+const mapStatesToProps = state => {
+    return { notes: state.notes }
+}
+
+export default connect(mapStatesToProps, {readNotes})(List)

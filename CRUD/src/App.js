@@ -1,35 +1,18 @@
-import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
-import { createStackNavigator, createAppContainer } from "react-navigation"
+import React, { Component } from 'react'
+import { createStore,applyMiddleware } from "redux"
+import thunk from 'redux-thunk'
+import { Provider } from 'react-redux'
 
-import Create from './components/Create'
-import List from './components/List'
+import Navigator from './Navigator'
+import Reducers from './reducers'
 
-const MainNavigator = createStackNavigator(
-  {
-    List: { screen: List },
-    Create: { screen: Create }
-  },
-  {
-    initialRouteName: 'List',
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: '#6200EE',
-        shadowColor: '#000',
-        shadowOffset: {
-          width: 0,
-          height: 2
-        },
-        shadowOpacity: 0.2
-      },
-      headerTintColor: '#fff',
-      headerTitleStyle: {
-        fontSize: 24
-      }
-    }
+export default class App extends Component {
+  render() {
+    const store = createStore(Reducers, applyMiddleware(thunk))
+    return (
+      <Provider store={store}>
+        <Navigator />
+      </Provider>
+    )
   }
-);
-
-const App = createAppContainer(MainNavigator);
-
-export default App;
+}

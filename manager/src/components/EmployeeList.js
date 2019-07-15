@@ -1,10 +1,10 @@
 import _ from 'lodash'
 import React, { Component } from "react";
+import { ListView } from 'react-native'
 import { connect } from 'react-redux'
 import { employeesFetch } from '../actions'
-import { ListView} from 'react-native'
 
-import ListItem from  './ListItem'
+import ListItem from './ListItem'
 
 class EmployeeList extends Component {
     componentWillMount() {
@@ -25,7 +25,7 @@ class EmployeeList extends Component {
         this.dataSource = ds.cloneWithRows(employees)
     }
 
-    renderRow(employee){
+    renderRow(employee) {
         return <ListItem employee={employee} />
     }
 
@@ -42,10 +42,10 @@ class EmployeeList extends Component {
 
 const mapStateToProps = state => {
     const employees = _.map(state.employees, (employee, uid) => {
-       
+
         return { uid, ...employee }
     })
-    return {employees}
+    return { employees }
 }
 
 export default connect(mapStateToProps, { employeesFetch })(EmployeeList)
