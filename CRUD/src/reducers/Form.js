@@ -1,5 +1,6 @@
 import { UPDATE_FORM, CREATE_NOTE, READ_NOTE, UPDATE_NOTE, DELETE_NOTE } from '../actions/types'
 const INITIAL_STATE = {
+    _id: '',
     title: '',
     body: ''
 }

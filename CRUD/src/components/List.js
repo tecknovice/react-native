@@ -2,20 +2,17 @@ import React, { Component } from "react";
 import { View, FlatList } from 'react-native'
 import { Icon } from 'react-native-elements'
 import { connect } from 'react-redux'
+import { Actions } from 'react-native-router-flux'
 
-import {readNotes} from '../actions'
+import { readNotes } from '../actions'
 import ListItem from './ListItem'
 class List extends Component {
-    static navigationOptions = {
-        title: 'List'
-      }
-    constructor(props){
+    constructor(props) {
         super(props)
         this.props.readNotes()
-        this.state ={ isLoading: true}
-      }
+        this.state = { isLoading: true }
+    }
     render() {
-        const { navigate } = this.props.navigation
         const { buttonContainerStyle } = styles
         return (
             <View style={{ flex: 1, backgroundColor: '#EEE' }}>
@@ -30,7 +27,7 @@ class List extends Component {
                         type='material'
                         color='#000'
                         underlayColor='#03DAC5'
-                        onPress={() => navigate('Create')} />
+                        onPress={() => Actions.Create()} />
                 </View>
             </View>
         )
@@ -61,4 +58,4 @@ const mapStatesToProps = state => {
     return { notes: state.notes }
 }
 
-export default connect(mapStatesToProps, {readNotes})(List)
+export default connect(mapStatesToProps, { readNotes })(List)

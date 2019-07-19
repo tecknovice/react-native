@@ -6,9 +6,6 @@ import { createNote } from '../actions'
 import Form from './commons/Form'
 import { Card } from './commons/Card'
 class Create extends Component {
-    static navigationOptions = {
-        title: 'Create'
-      }
     onPressButton() {
         const { title, body } = this.props
         this.props.createNote({ title, body })
