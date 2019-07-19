@@ -13,9 +13,9 @@ class List extends Component {
         this.state = { isLoading: true }
     }
     render() {
-        const { buttonContainerStyle } = styles
+        const { containerStyle, buttonContainerStyle } = styles
         return (
-            <View style={{ flex: 1, backgroundColor: '#EEE' }}>
+            <View style={containerStyle}>
                 <FlatList
                     data={this.props.notes}
                     renderItem={({ item }) => <ListItem {...item} />}
@@ -34,6 +34,11 @@ class List extends Component {
     }
 }
 const styles = {
+    containerStyle:{
+        flex: 1, 
+        backgroundColor: '#EEE',
+        paddingTop: 10
+    },
     buttonContainerStyle: {
         width: 60,
         height: 60,
