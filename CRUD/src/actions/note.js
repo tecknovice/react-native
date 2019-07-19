@@ -1,7 +1,7 @@
 import { Actions } from 'react-native-router-flux'
 import axios from 'axios'
 import { UPDATE_FORM, CREATE_NOTE, READ_NOTES, UPDATE_NOTE, DELETE_NOTE } from './types'
-const API = 'https://teckmaster-crud.herokuapp.com'
+const API = 'https://tecknovice-crud-api.herokuapp.com'
 
 export const updateForm = ({ prop, value }) => {
     return {
