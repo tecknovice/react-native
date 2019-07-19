@@ -11,7 +11,7 @@ export const Card = (props) => {
 const styles = StyleSheet.create({
     containerStyle: {
         backgroundColor: '#fff',
-        padding: 10,
+        padding: 5,
         marginLeft: 10,
         marginRight: 10,
         marginBottom: 10,
