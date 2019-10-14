@@ -6,40 +6,37 @@ export default class HelloWorldApp extends Component {
 
   state = {
     checked: true,
-    geoData: [
-      { key: 'Devin' },
-      { key: 'Dan' }
-    ]
+    geoData: []
   };
 
   async componentDidMount() {
-    
+
     try {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        this._interval = setInterval(() => {
-          Geolocation.getCurrentPosition(
-            (position) => {
-              console.log(position);
-            },
-            (error) => {
-              // See error code charts below.
-              console.log(error.code, error.message);
-            },
-            { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-          );
-        }, 1000);        
+        this.watchId = Geolocation.watchPosition(
+          (position) => {
+            this.setState({
+              geoData: [...this.state.geoData, position]
+            })
+          },
+          (error) => {
+            // See error code charts below.
+            console.log(error.code, error.message);
+          },
+          { enableHighAccuracy: true,  distanceFilter:1, interval: 1000}
+        );
       } else {
-        console.log('Camera permission denied');
+        console.log('Location permission denied');
       }
     } catch (err) {
       console.log(err);
     }
   }
   componentWillUnmount() {
-    clearInterval(this._interval);
+    Geolocation.clearWatch(this.watchId)
   }
   render() {
     return (
@@ -57,7 +54,8 @@ export default class HelloWorldApp extends Component {
         <View style={styles.geoDataContainer}>
           <FlatList
             data={this.state.geoData}
-            renderItem={({ item }) => <Text style={styles.geoDataItem}>{item.key}</Text>}
+            renderItem={({ item }) => <Text style={styles.geoDataItem}>{JSON.stringify(item)}</Text>}
+            keyExtractor={item => item.timestamp}
           />
         </View>
       </View>
@@ -90,6 +88,7 @@ const styles = StyleSheet.create({
     borderTopColor: '#ddd'
   },
   geoDataItem: {
-    height: 100
+    borderTopWidth: 1,
+    borderTopColor: '#ddd'
   }
 })
