@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
-import { Text, View,Alert } from 'react-native';
+import { Text, View, CheckBox, FlatList, StyleSheet ,Alert } from 'react-native';
 import BackgroundGeolocation from '@mauron85/react-native-background-geolocation';
 export default class HelloWorldApp extends Component {
+
+  state = {
+    checked: true,
+    geoData: []
+  };
 
   componentDidMount() {
 
@@ -13,7 +18,7 @@ export default class HelloWorldApp extends Component {
       notificationText: 'enabled',
       debug: true,
       startOnBoot: false,
-      stopOnTerminate: false,
+      stopOnTerminate: true,
       locationProvider: BackgroundGeolocation.ACTIVITY_PROVIDER,
       interval: 1000,
       fastestInterval: 1000,
@@ -22,7 +27,10 @@ export default class HelloWorldApp extends Component {
     });
 
     BackgroundGeolocation.on('location', (location) => {
-      console.log(location)
+      this.setState({
+        geoData: [...this.state.geoData, location]
+      })
+      // console.log(location)
     });
 
     BackgroundGeolocation.on('stationary', (stationaryLocation) => {
@@ -56,10 +64,12 @@ export default class HelloWorldApp extends Component {
 
     BackgroundGeolocation.on('background', () => {
       console.log('[INFO] App is in background');
+      if(!this.state.checked) BackgroundGeolocation.stop()
     });
 
     BackgroundGeolocation.on('foreground', () => {
       console.log('[INFO] App is in foreground');
+      if(!this.state.checked) BackgroundGeolocation.start()
     });
 
     BackgroundGeolocation.on('abort_requested', () => {
@@ -97,9 +107,55 @@ export default class HelloWorldApp extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Hello, world!</Text>
+      <View style={{ flex: 1 }}>
+        <View style={styles.headerStyle}>
+          <Text>Location</Text>
+        </View>
+        <View style={styles.controlStyle}>
+          <CheckBox
+            value={this.state.checked}
+            onValueChange={() => this.setState({ checked: !this.state.checked })}
+          />
+          <Text style={{ marginTop: 5 }}>Background geolocation</Text>
+        </View>
+        <View style={styles.geoDataContainer}>
+          <FlatList
+            data={this.state.geoData}
+            renderItem={({ item }) => <Text style={styles.geoDataItem}>{JSON.stringify(item)}</Text>}
+            keyExtractor={item => item.id}
+          />
+        </View>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  headerStyle: {
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 20,
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.2
+  },
+  controlStyle: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    padding: 10
+  },
+  geoDataContainer: {
+    flex: 1,
+    borderTopWidth: 1,
+    borderTopColor: '#ddd'
+  },
+  geoDataItem: {
+    borderTopWidth: 1,
+    borderTopColor: '#ddd'
+  }
+})
