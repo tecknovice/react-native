@@ -5,7 +5,6 @@ import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import io.invertase.firebase.RNFirebasePackage;
-import io.invertase.firebase.auth.RNFirebaseAuthPackage; // <-- Add this line
 import io.invertase.firebase.messaging.RNFirebaseMessagingPackage; // <-- Add this line
 import io.invertase.firebase.notifications.RNFirebaseNotificationsPackage; // <-- Add this line
 import com.facebook.react.ReactNativeHost;
@@ -29,7 +28,6 @@ public class MainApplication extends Application implements ReactApplication {
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
-          packages.add(new RNFirebaseAuthPackage()); // <-- Add this line
           packages.add(new RNFirebaseMessagingPackage()); // <-- Add this line
           packages.add(new RNFirebaseNotificationsPackage()); // <-- Add this line
           return packages;

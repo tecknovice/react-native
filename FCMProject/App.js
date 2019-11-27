@@ -20,7 +20,6 @@ export default class App extends Component {
       console.log('20:fcmToken=',fcmToken);
     });
   }
-
   componentWillUnmount() {
     this.onTokenRefreshListener();
   }
