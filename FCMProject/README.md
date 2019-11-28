@@ -212,4 +212,4 @@ public class MainApplication extends Application implements ReactApplication {
      * Click Review button
      * Click Publish button
   * You will see notification pop up in your phone!!!
-
+    ![push-notification](push-notification.png)
